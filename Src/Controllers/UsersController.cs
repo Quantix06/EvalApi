@@ -23,19 +23,19 @@ public class UsersController : ControllerBase
     {
         var user = new User
         {
-            Name = createUserDto.Name,
-            Username = createUserDto.Username,
-            Email = createUserDto.Email
+            Name = createUserDto.name,
+            Username = createUserDto.username,
+            Email = createUserDto.email
         };
 
         var createdUser = await _userService.CreateUserAsync(user);
 
         var userDto = new UserDto
         {
-            Id = createdUser.Id,
-            Name = createdUser.Name,
-            Username = createdUser.Username,
-            Email = createdUser.Email
+            id = createdUser.Id,
+            name = createdUser.Name,
+            username = createdUser.Username,
+            email = createdUser.Email
         };
 
         // Ideally return CreatedAtAction, but for simplicity returning Ok/Created with body
@@ -48,10 +48,10 @@ public class UsersController : ControllerBase
         var users = await _userService.GetAllUsersAsync();
         var userDtos = users.Select(u => new UserDto
         {
-            Id = u.Id,
-            Name = u.Name,
-            Username = u.Username,
-            Email = u.Email
+            id = u.Id,
+            name = u.Name,
+            username = u.Username,
+            email = u.Email
         });
 
         return Ok(userDtos);
@@ -60,26 +60,26 @@ public class UsersController : ControllerBase
     [HttpPost("{userId}/posts")]
     public async Task<ActionResult<PostDto>> CreatePost(int userId, [FromBody] CreatePostDto createPostDto)
     {
-        if (userId != createPostDto.UserId)
+        if (userId != createPostDto.userId)
         {
             return BadRequest("UserId in route must match UserId in body");
         }
 
         var post = new Post
         {
-            UserId = createPostDto.UserId,
-            Title = createPostDto.Title,
-            Body = createPostDto.Body
+            UserId = createPostDto.userId,
+            Title = createPostDto.title,
+            Body = createPostDto.body
         };
 
         var createdPost = await _postService.CreatePostAsync(userId, post);
 
         var postDto = new PostDto
         {
-            Id = createdPost.Id,
-            UserId = createdPost.UserId,
-            Title = createdPost.Title,
-            Body = createdPost.Body
+            id = createdPost.Id,
+            userId = createdPost.UserId,
+            title = createdPost.Title,
+            body = createdPost.Body
         };
 
         return StatusCode(201, postDto);
@@ -91,10 +91,10 @@ public class UsersController : ControllerBase
         var posts = await _postService.GetPostsByUserIdAsync(userId);
         var postDtos = posts.Select(p => new PostDto
         {
-            Id = p.Id,
-            UserId = p.UserId,
-            Title = p.Title,
-            Body = p.Body
+            id = p.Id,
+            userId = p.UserId,
+            title = p.Title,
+            body = p.Body
         });
 
         return Ok(postDtos);

@@ -144,3 +144,4 @@ C:\Users\firek\.gemini\antigravity\scratch\EvalApi\bin\Debug\net9.0\Swashbuckle.
 C:\Users\firek\.gemini\antigravity\scratch\EvalApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\firek\.gemini\antigravity\scratch\EvalApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\firek\.gemini\antigravity\scratch\EvalApi\obj\Debug\net9.0\EvalApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\firek\.gemini\antigravity\scratch\EvalApi\obj\Debug\net9.0\EvalApi.sourcelink.json

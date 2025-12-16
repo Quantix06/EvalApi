@@ -4,21 +4,15 @@ namespace EvalApi.Src.Views.Dto;
 
 public class UserDto
 {
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string Username { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
+  [Required, Range(1, int.MaxValue)] public required int id { get; init; }
+  [Required] public required string name { get; init; }
+  [Required] public required string username { get; init; }
+  [Required, EmailAddress] public required string email { get; init; }
 }
 
 public class CreateUserDto
 {
-    [Required]
-    public string Name { get; set; } = string.Empty;
-
-    [Required]
-    public string Username { get; set; } = string.Empty;
-
-    [Required]
-    [EmailAddress]
-    public string Email { get; set; } = string.Empty;
+  [Required] public required string name { get; init; }
+  [Required] public required string username { get; init; }
+  [Required, EmailAddress] public required string email { get; init; }
 }

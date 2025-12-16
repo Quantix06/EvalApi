@@ -22,10 +22,10 @@ public class PostsController : ControllerBase
         var post = await _postService.GetPostByIdAsync(postId);
         var postDto = new PostDto
         {
-            Id = post.Id,
-            UserId = post.UserId,
-            Title = post.Title,
-            Body = post.Body
+            id = post.Id,
+            userId = post.UserId,
+            title = post.Title,
+            body = post.Body
         };
 
         return Ok(postDto);
@@ -34,27 +34,27 @@ public class PostsController : ControllerBase
     [HttpPut("{postId}")]
     public async Task<ActionResult<PostDto>> UpdatePost(int postId, [FromBody] UpdatePostDto updatePostDto)
     {
-        if (postId != updatePostDto.Id)
+        if (postId != updatePostDto.id)
         {
             return BadRequest("PostId in route must match Id in body");
         }
 
         var post = new Post
         {
-            Id = updatePostDto.Id,
-            UserId = updatePostDto.UserId,
-            Title = updatePostDto.Title,
-            Body = updatePostDto.Body
+            Id = updatePostDto.id,
+            UserId = updatePostDto.userId,
+            Title = updatePostDto.title,
+            Body = updatePostDto.body
         };
 
         var updatedPost = await _postService.UpdatePostAsync(postId, post);
 
         var postDto = new PostDto
         {
-            Id = updatedPost.Id,
-            UserId = updatedPost.UserId,
-            Title = updatedPost.Title,
-            Body = updatedPost.Body
+            id = updatedPost.Id,
+            userId = updatedPost.UserId,
+            title = updatedPost.Title,
+            body = updatedPost.Body
         };
 
         return Ok(postDto);
