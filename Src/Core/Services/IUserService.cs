@@ -1,9 +1,9 @@
-using EvalApi.Src.Models;
+using EvalApi.Src.Models.User;
 
 namespace EvalApi.Src.Core.Services;
 
 public interface IUserService
 {
-    Task<User> CreateUserAsync(User user);
-    Task<IEnumerable<User>> GetAllUsersAsync();
+    Task<UserModel> CreateUserAsync(UserModel user);
+    Task<IEnumerable<UserModel>> GetAllUsersAsync();
 }

@@ -1,6 +1,8 @@
 using EvalApi.Src.Core.Services;
-using EvalApi.Src.Models;
-using EvalApi.Src.Views.Dto;
+using EvalApi.Src.Models.Post;
+using EvalApi.Src.Models.User;
+using EvalApi.Src.Views.Dto.Post;
+using EvalApi.Src.Views.Dto.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EvalApi.Src.Controllers;
@@ -21,7 +23,7 @@ public class UsersController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<UserDto>> CreateUser([FromBody] CreateUserDto createUserDto)
     {
-        var user = new User
+        var user = new UserModel
         {
             Name = createUserDto.name,
             Username = createUserDto.username,
@@ -65,7 +67,7 @@ public class UsersController : ControllerBase
             return BadRequest("UserId in route must match UserId in body");
         }
 
-        var post = new Post
+        var post = new PostModel
         {
             UserId = createPostDto.userId,
             Title = createPostDto.title,

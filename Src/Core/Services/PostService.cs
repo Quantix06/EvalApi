@@ -1,6 +1,6 @@
 using EvalApi.Src.Core.Exceptions;
 using EvalApi.Src.Core.Repositories;
-using EvalApi.Src.Models;
+using EvalApi.Src.Models.Post;
 
 namespace EvalApi.Src.Core.Services;
 
@@ -15,7 +15,7 @@ public class PostService : IPostService
         _userRepository = userRepository;
     }
 
-    public async Task<Post> CreatePostAsync(int userId, Post post)
+    public async Task<PostModel> CreatePostAsync(int userId, PostModel post)
     {
         // Verify user exists
         var user = await _userRepository.GetUserByIdAsync(userId);
@@ -28,7 +28,7 @@ public class PostService : IPostService
         return await _postRepository.CreatePostAsync(post);
     }
 
-    public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(int userId)
+    public async Task<IEnumerable<PostModel>> GetPostsByUserIdAsync(int userId)
     {
         // Verify user exists? Not strictly required by prompt but good practice.
         // Prompt says: "Un endpoint ReST pour retrouver tous les articles d’un utilisateur"
@@ -43,7 +43,7 @@ public class PostService : IPostService
         return await _postRepository.GetPostsByUserIdAsync(userId);
     }
 
-    public async Task<Post> GetPostByIdAsync(int id)
+    public async Task<PostModel> GetPostByIdAsync(int id)
     {
         var post = await _postRepository.GetPostByIdAsync(id);
         if (post == null)
@@ -53,7 +53,7 @@ public class PostService : IPostService
         return post;
     }
 
-    public async Task<Post> UpdatePostAsync(int id, Post post)
+    public async Task<PostModel> UpdatePostAsync(int id, PostModel post)
     {
         var existingPost = await _postRepository.GetPostByIdAsync(id);
         if (existingPost == null)

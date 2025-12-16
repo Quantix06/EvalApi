@@ -1,12 +1,12 @@
-using EvalApi.Src.Models;
+using EvalApi.Src.Models.Post;
 
 namespace EvalApi.Src.Core.Services;
 
 public interface IPostService
 {
-    Task<Post> CreatePostAsync(int userId, Post post);
-    Task<IEnumerable<Post>> GetPostsByUserIdAsync(int userId);
-    Task<Post> GetPostByIdAsync(int id);
-    Task<Post> UpdatePostAsync(int id, Post post);
+    Task<PostModel> CreatePostAsync(int userId, PostModel post);
+    Task<IEnumerable<PostModel>> GetPostsByUserIdAsync(int userId);
+    Task<PostModel> GetPostByIdAsync(int id);
+    Task<PostModel> UpdatePostAsync(int id, PostModel post);
     Task DeletePostAsync(int id);
 }

@@ -1,6 +1,6 @@
 using EvalApi.Src.Core.Services;
-using EvalApi.Src.Models;
-using EvalApi.Src.Views.Dto;
+using EvalApi.Src.Models.Post;
+using EvalApi.Src.Views.Dto.Post;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EvalApi.Src.Controllers;
@@ -39,7 +39,7 @@ public class PostsController : ControllerBase
             return BadRequest("PostId in route must match Id in body");
         }
 
-        var post = new Post
+        var post = new PostModel
         {
             Id = updatePostDto.id,
             UserId = updatePostDto.userId,

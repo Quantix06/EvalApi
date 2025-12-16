@@ -1,6 +1,6 @@
 using EvalApi.Data;
 using EvalApi.Src.Core.Repositories.Entities;
-using EvalApi.Src.Models;
+using EvalApi.Src.Models.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace EvalApi.Src.Core.Repositories;
@@ -14,7 +14,7 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public async Task<User> CreateUserAsync(User user)
+    public async Task<UserModel> CreateUserAsync(UserModel user)
     {
         var entity = new UserEntity
         {
@@ -30,10 +30,10 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    public async Task<IEnumerable<User>> GetAllUsersAsync()
+    public async Task<IEnumerable<UserModel>> GetAllUsersAsync()
     {
         var entities = await _context.Users.ToListAsync();
-        return entities.Select(e => new User
+        return entities.Select(e => new UserModel
         {
             Id = e.Id,
             Name = e.Name,
@@ -42,12 +42,12 @@ public class UserRepository : IUserRepository
         });
     }
 
-    public async Task<User?> GetUserByIdAsync(int id)
+    public async Task<UserModel?> GetUserByIdAsync(int id)
     {
         var entity = await _context.Users.FindAsync(id);
         if (entity == null) return null;
 
-        return new User
+        return new UserModel
         {
             Id = entity.Id,
             Name = entity.Name,

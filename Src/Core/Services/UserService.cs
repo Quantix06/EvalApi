@@ -1,5 +1,5 @@
 using EvalApi.Src.Core.Repositories;
-using EvalApi.Src.Models;
+using EvalApi.Src.Models.User;
 
 namespace EvalApi.Src.Core.Services;
 
@@ -12,12 +12,12 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<User> CreateUserAsync(User user)
+    public async Task<UserModel> CreateUserAsync(UserModel user)
     {
         return await _userRepository.CreateUserAsync(user);
     }
 
-    public async Task<IEnumerable<User>> GetAllUsersAsync()
+    public async Task<IEnumerable<UserModel>> GetAllUsersAsync()
     {
         return await _userRepository.GetAllUsersAsync();
     }

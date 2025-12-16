@@ -1,6 +1,6 @@
 using EvalApi.Data;
 using EvalApi.Src.Core.Repositories.Entities;
-using EvalApi.Src.Models;
+using EvalApi.Src.Models.Post;
 using Microsoft.EntityFrameworkCore;
 
 namespace EvalApi.Src.Core.Repositories;
@@ -14,7 +14,7 @@ public class PostRepository : IPostRepository
         _context = context;
     }
 
-    public async Task<Post> CreatePostAsync(Post post)
+    public async Task<PostModel> CreatePostAsync(PostModel post)
     {
         var entity = new PostEntity
         {
@@ -30,10 +30,10 @@ public class PostRepository : IPostRepository
         return post;
     }
 
-    public async Task<IEnumerable<Post>> GetPostsByUserIdAsync(int userId)
+    public async Task<IEnumerable<PostModel>> GetPostsByUserIdAsync(int userId)
     {
         var entities = await _context.Posts.Where(p => p.UserId == userId).ToListAsync();
-        return entities.Select(e => new Post
+        return entities.Select(e => new PostModel
         {
             Id = e.Id,
             UserId = e.UserId,
@@ -42,12 +42,12 @@ public class PostRepository : IPostRepository
         });
     }
 
-    public async Task<Post?> GetPostByIdAsync(int id)
+    public async Task<PostModel?> GetPostByIdAsync(int id)
     {
         var entity = await _context.Posts.FindAsync(id);
         if (entity == null) return null;
 
-        return new Post
+        return new PostModel
         {
             Id = entity.Id,
             UserId = entity.UserId,
@@ -56,7 +56,7 @@ public class PostRepository : IPostRepository
         };
     }
 
-    public async Task<Post> UpdatePostAsync(Post post)
+    public async Task<PostModel> UpdatePostAsync(PostModel post)
     {
         var entity = await _context.Posts.FindAsync(post.Id);
         if (entity != null)

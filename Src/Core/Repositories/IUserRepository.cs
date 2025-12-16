@@ -1,10 +1,10 @@
-using EvalApi.Src.Models;
+using EvalApi.Src.Models.User;
 
 namespace EvalApi.Src.Core.Repositories;
 
 public interface IUserRepository
 {
-    Task<User> CreateUserAsync(User user);
-    Task<IEnumerable<User>> GetAllUsersAsync();
-    Task<User?> GetUserByIdAsync(int id);
+    Task<UserModel> CreateUserAsync(UserModel user);
+    Task<IEnumerable<UserModel>> GetAllUsersAsync();
+    Task<UserModel?> GetUserByIdAsync(int id);
 }
